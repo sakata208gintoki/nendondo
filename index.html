@@ -84,55 +84,22 @@
             margin-bottom: 10px;
         }
 
-        .glitch-text {
-            position: relative;
-            font-size: 45px; 
-            text-align: center;
+        /* New Main Title Typing Effect */
+        .title-typing-container { 
+            display: inline-block; 
+        }
+        
+        .title-typing-text {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 15px solid white;
+            margin: 0;
+            font-size: 45px;
             color: white;
             text-transform: uppercase;
-            margin: 0;
-            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.9); 
-        }
-
-        .glitch-text::before, .glitch-text::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0; 
-            left: 0; 
-            width: 100%;
-            background: rgba(0,0,0,0);
-        }
-
-        .glitch-text::before {
-            left: 4px; 
-            text-shadow: -3px 0 red, 4px 4px 8px rgba(0, 0, 0, 0.9);
-            clip-path: inset(10% 0 60% 0);
-            animation: glitch-anim-1 2s infinite linear alternate-reverse;
-        }
-
-        .glitch-text::after {
-            left: -4px; 
-            text-shadow: -3px 0 cyan, 4px 4px 8px rgba(0, 0, 0, 0.9);
-            clip-path: inset(80% 0 5% 0);
-            animation: glitch-anim-2 3s infinite linear alternate-reverse;
-        }
-
-        @keyframes glitch-anim-1 {
-            0% { clip-path: inset(20% 0 80% 0); }
-            20% { clip-path: inset(60% 0 10% 0); }
-            40% { clip-path: inset(40% 0 50% 0); }
-            60% { clip-path: inset(80% 0 5% 0); }
-            80% { clip-path: inset(10% 0 70% 0); }
-            100% { clip-path: inset(30% 0 50% 0); }
-        }
-
-        @keyframes glitch-anim-2 {
-            0% { clip-path: inset(10% 0 60% 0); }
-            20% { clip-path: inset(30% 0 20% 0); }
-            40% { clip-path: inset(70% 0 10% 0); }
-            60% { clip-path: inset(20% 0 50% 0); }
-            80% { clip-path: inset(50% 0 30% 0); }
-            100% { clip-path: inset(5% 0 80% 0); }
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.9);
+            /* 12 steps for the 12 characters in "MY PORTFOLIO" */
+            animation: typing 1.5s steps(12, end), blink-caret .5s step-end infinite;
         }
 
         .ascii-border {
@@ -149,6 +116,7 @@
             margin-bottom: 30px;
         }
 
+        /* Subtitle Typing Animation */
         .typing-container { display: inline-block; }
         .typing-text {
             overflow: hidden;
@@ -158,6 +126,7 @@
             font-size: 16px;
             animation: typing 2.5s steps(35, end), blink-caret .5s step-end infinite;
         }
+        
         @keyframes typing { from { width: 0 } to { width: 100% } }
         @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: white; } }
 
@@ -167,6 +136,7 @@
             font-size: 20px;
         }
 
+        /* Project Grid */
         .project-grid {
             display: flex;
             gap: 20px;
@@ -178,7 +148,6 @@
             border: 1px solid #333;
             background: rgba(10, 10, 10, 0.8);
             padding: 15px;
-            /* Added box-sizing and adjusted the width calculation */
             box-sizing: border-box; 
             width: calc(50% - 10px); 
             position: relative;
@@ -244,7 +213,7 @@
 
         @media (max-width: 768px) {
             .project-box { width: 100%; }
-            .glitch-text { font-size: 28px; }
+            .title-typing-text { font-size: 28px; border-right: 10px solid white; }
             .typing-text { font-size: 12px; }
         }
     </style>
@@ -260,7 +229,9 @@
     <div class="container">
         
         <div class="visual-header">
-            <h1 class="glitch-text" data-text="MY PORTFOLIO">MY PORTFOLIO</h1>
+            <div class="title-typing-container">
+                <h1 class="title-typing-text">MY PORTFOLIO</h1>
+            </div>
         </div>
 
         <div class="ascii-border">
