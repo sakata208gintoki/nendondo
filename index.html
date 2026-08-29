@@ -78,9 +78,10 @@
 
         /* Glitch Header */
         .visual-header {
+         .visual-header {
             position: relative;
             height: 350px;
-            background-image: url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1000&auto=format&fit=crop');
+            background-image: url('future.png'); /* Keeps your custom image */
             background-size: cover;
             background-position: center;
             border: 2px solid #333;
@@ -88,37 +89,43 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 10px;
-            filter: contrast(150%) grayscale(80%);
         }
-        .glitch-wrapper {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-        }
+
         .glitch-text {
             position: relative;
-            font-size: 48px;
+            font-size: 60px;
             text-align: center;
-            letter-spacing: 4px;
+            letter-spacing: 6px;
             color: white;
             text-transform: uppercase;
             margin: 0;
+            /* Heavy drop shadow replaces the black box so text is readable */
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.9); 
         }
+
         .glitch-text::before, .glitch-text::after {
             content: attr(data-text);
             position: absolute;
-            top: 0; left: 0; width: 100%;
+            top: 0; 
+            left: 0; 
+            width: 100%;
             background: rgba(0,0,0,0);
         }
+
         .glitch-text::before {
-            left: 3px; text-shadow: -2px 0 red;
+            left: 3px; 
+            text-shadow: -2px 0 red, 4px 4px 8px rgba(0, 0, 0, 0.9);
             clip-path: inset(10% 0 60% 0);
             animation: glitch-anim-1 2s infinite linear alternate-reverse;
         }
+
         .glitch-text::after {
-            left: -3px; text-shadow: -2px 0 cyan;
+            left: -3px; 
+            text-shadow: -2px 0 cyan, 4px 4px 8px rgba(0, 0, 0, 0.9);
             clip-path: inset(80% 0 5% 0);
             animation: glitch-anim-2 3s infinite linear alternate-reverse;
         }
+
         @keyframes glitch-anim-1 {
             0% { clip-path: inset(20% 0 80% 0); }
             20% { clip-path: inset(60% 0 10% 0); }
@@ -127,6 +134,7 @@
             80% { clip-path: inset(10% 0 70% 0); }
             100% { clip-path: inset(30% 0 50% 0); }
         }
+
         @keyframes glitch-anim-2 {
             0% { clip-path: inset(10% 0 60% 0); }
             20% { clip-path: inset(30% 0 20% 0); }
@@ -318,6 +326,9 @@
         </div>
 
     </div>
+    <div class="visual-header">
+            <h1 class="glitch-text" data-text="MY PORTFOLIO">MY PORTFOLIO</h1>
+        </div>
 
 </body>
 </html>
