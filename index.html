@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>nendondo // DIRECTIVE</title>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <!-- Importing a true 8-bit pixel font -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #050505;
@@ -20,8 +21,10 @@
             background-position: center;
             background-attachment: fixed;
             color: var(--text-color);
-            font-family: 'VT323', monospace;
-            font-size: 22px;
+            /* Applied the pixel font globally */
+            font-family: 'Press Start 2P', monospace; 
+            font-size: 14px;
+            line-height: 1.8;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
@@ -51,7 +54,7 @@
             overflow: hidden;
             background-color: #111;
             border-bottom: 1px solid var(--alert-color);
-            padding: 5px 0;
+            padding: 8px 0;
         }
         
         .ticker {
@@ -60,8 +63,7 @@
             padding-left: 100%;
             animation: ticker-anim 15s linear infinite;
             color: var(--alert-color);
-            font-size: 24px;
-            letter-spacing: 2px;
+            font-size: 14px;
         }
         
         @keyframes ticker-anim {
@@ -75,7 +77,6 @@
             padding: 20px;
         }
 
-        /* Clean Header */
         .visual-header {
             position: relative;
             height: 250px;
@@ -87,9 +88,8 @@
 
         .glitch-text {
             position: relative;
-            font-size: 60px;
+            font-size: 45px; /* Scaled down slightly because pixel fonts are very wide */
             text-align: center;
-            letter-spacing: 6px;
             color: white;
             text-transform: uppercase;
             margin: 0;
@@ -106,15 +106,15 @@
         }
 
         .glitch-text::before {
-            left: 3px; 
-            text-shadow: -2px 0 red, 4px 4px 8px rgba(0, 0, 0, 0.9);
+            left: 4px; 
+            text-shadow: -3px 0 red, 4px 4px 8px rgba(0, 0, 0, 0.9);
             clip-path: inset(10% 0 60% 0);
             animation: glitch-anim-1 2s infinite linear alternate-reverse;
         }
 
         .glitch-text::after {
-            left: -3px; 
-            text-shadow: -2px 0 cyan, 4px 4px 8px rgba(0, 0, 0, 0.9);
+            left: -4px; 
+            text-shadow: -3px 0 cyan, 4px 4px 8px rgba(0, 0, 0, 0.9);
             clip-path: inset(80% 0 5% 0);
             animation: glitch-anim-2 3s infinite linear alternate-reverse;
         }
@@ -140,9 +140,11 @@
         .ascii-border {
             text-align: center;
             color: #777;
-            letter-spacing: 5px;
+            letter-spacing: 2px;
             margin: 20px 0;
             user-select: none;
+            overflow: hidden;
+            white-space: nowrap;
         }
 
         .content-box {
@@ -155,12 +157,17 @@
             white-space: nowrap;
             border-right: 15px solid white;
             margin: 0;
+            font-size: 16px;
             animation: typing 2.5s steps(35, end), blink-caret .5s step-end infinite;
         }
         @keyframes typing { from { width: 0 } to { width: 100% } }
         @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: white; } }
 
-        h2 { font-weight: normal; margin-top: 0; }
+        h2 { 
+            font-weight: normal; 
+            margin-top: 0; 
+            font-size: 20px;
+        }
 
         .project-grid {
             display: flex;
@@ -172,7 +179,7 @@
         .project-box {
             border: 1px solid #333;
             background: rgba(10, 10, 10, 0.8);
-            padding: 10px;
+            padding: 15px;
             width: calc(50% - 35px);
             position: relative;
             cursor: crosshair;
@@ -185,6 +192,121 @@
             border-color: var(--alert-color);
             box-shadow: 0 0 15px rgba(255, 51, 51, 0.3);
             background: rgba(17, 17, 17, 0.9);
+        }
+        
+        .project-vid {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background-color: #000;
+            border-bottom: 1px solid #333;
+            filter: grayscale(100%) contrast(120%);
+            transition: filter 0.3s;
+            margin-bottom: 15px;
+        }
+        
+        .project-box:hover .project-vid {
+            filter: grayscale(0%) contrast(100%);
+        }
+        
+        .project-title {
+            color: var(--alert-color);
+            margin: 0 0 10px 0;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+        
+        .project-desc {
+            font-size: 12px;
+            color: #aaa;
+            margin: 0;
+            flex-grow: 1; 
+        }
+        
+        .project-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--link-color);
+            text-decoration: none;
+            border: 1px dashed var(--link-color);
+            padding: 8px 12px;
+            font-size: 12px;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+            align-self: flex-start;
+        }
+        
+        .project-link:hover {
+            background-color: var(--link-color);
+            color: #000;
+            border-style: solid;
+        }
+
+        @media (max-width: 768px) {
+            .project-box { width: 100%; }
+            .glitch-text { font-size: 28px; }
+            .typing-text { font-size: 12px; }
+        }
+    </style>
+</head>
+<body class="crt-glow">
+
+    <div class="ticker-wrap">
+        <div class="ticker">
+            SYSTEM LOG // STATUS: CONNECTED // DIRECTIVES SECURED // UNLINK THE WORLD //
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <div class="visual-header">
+            <h1 class="glitch-text" data-text="MY PORTFOLIO">MY PORTFOLIO</h1>
+        </div>
+
+        <div class="ascii-border">
+            &gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;
+        </div>
+
+        <div class="content-box">
+            <div class="typing-container">
+                <h2 class="typing-text">> Welcome to the project_</h2>
+            </div>
+            <p>This space is dedicated to logging active broadcasts, research, and system architecture. Interaction is strictly logged.</p>
+        </div>
+
+        <div class="ascii-border">
+            &gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;
+        </div>
+
+        <div class="content-box">
+            <h2>System Archives //</h2>
+            
+            <div class="project-grid">
+                
+                <div class="project-box" onmouseenter="this.querySelector('video').play()" onmouseleave="this.querySelector('video').pause()">
+                    <video class="project-vid" muted loop playsinline>
+                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    </video>
+                    <div class="project-title">SYS // RAYLIB_FIGHTER</div>
+                    <p class="project-desc">2D fighting mechanics prototype developed in C++.</p>
+                    <a href="https://github.com/sakata208gintoki/" target="_blank" class="project-link">> ACCESS SOURCE_</a>
+                </div>
+
+                <div class="project-box" onmouseenter="this.querySelector('video').play()" onmouseleave="this.querySelector('video').pause()">
+                    <video class="project-vid" muted loop playsinline>
+                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    </video>
+                    <div class="project-title">SYS // x64_TRACE</div>
+                    <p class="project-desc">Disassembling CrackMe executables using x64dbg.</p>
+                    <a href="https://github.com/sakata208gintoki/" target="_blank" class="project-link">> ACCESS LOGS_</a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>            background: rgba(17, 17, 17, 0.9);
         }
         
         .project-vid {
