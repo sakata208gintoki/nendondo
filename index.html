@@ -3,84 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>nendondo // DIRECTIVE</title>
+    <!-- Imports a retro pixel font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #050505;
+            --text-color: #e0e0e0;
+            --alert-color: #ff3333;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            background-color: #fafafa;
-        }
-        header {
-            border-bottom: 2px solid #333;
-            padding-bottom: 1rem;
-            margin-bottom: 2rem;
-        }
-        h1 {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'VT323', monospace;
+            font-size: 22px;
             margin: 0;
-            font-size: 2.5rem;
+            padding: 0;
+            overflow-x: hidden;
         }
-        .subtitle {
-            color: #666;
-            font-size: 1.2rem;
-            margin-top: 5px;
+
+        /* CRT Scanline Effect */
+        body::after {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(18, 16, 16, 0) 50%,
+                rgba(0, 0, 0, 0.25) 50%
+            );
+            background-size: 100% 4px;
+            z-index: 50;
+            pointer-events: none;
         }
-        .project-card {
-            background: white;
-            border: 1px solid #ddd;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+        /* Subtle screen glow */
+        .crt-glow {
+            text-shadow: 0 0 3px rgba(255, 255, 255, 0.4);
         }
-        h2 {
-            margin-top: 2rem;
+
+        .top-banner {
+            background-color: #111;
+            color: var(--alert-color);
+            text-align: center;
+            padding: 5px;
+            border-bottom: 1px solid var(--alert-color);
+            font-size: 24px;
+            letter-spacing: 2px;
         }
-        h3 {
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .visual-header {
+            position: relative;
+            height: 350px;
+            /* You can replace this URL with your own glitch/anime art */
+            background-image: url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            filter: contrast(150%) grayscale(80%);
+        }
+
+        .visual-text {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            font-size: 48px;
+            text-align: center;
+            letter-spacing: 4px;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .ascii-border {
+            text-align: center;
+            color: #777;
+            letter-spacing: 5px;
+            margin: 20px 0;
+            user-select: none;
+        }
+
+        h1, h2 {
+            font-weight: normal;
             margin-top: 0;
-            color: #222;
         }
+
+        .content-box {
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            color: #fff;
+            background: #222;
+            padding: 2px 5px;
+        }
+
         a {
-            color: #0366d6;
+            color: #88ccff;
             text-decoration: none;
         }
+
         a:hover {
-            text-decoration: underline;
+            background-color: #88ccff;
+            color: #000;
         }
     </style>
 </head>
-<body>
-    <header>
-        <h1>Welcome to my site</h1>
-        <p class="subtitle">Industrial Engineering & Software Development</p>
-    </header>
+<body class="crt-glow">
 
-    <section>
-        <h2>About Me</h2>
-        <p>I focus on the intersection of industrial systems, mechanical engineering, and programming. This space serves as a log for my code, studies, and personal projects.</p>
-    </section>
+    <div class="top-banner">
+        SYSTEM LOG // STATUS: CONNECTED // MEMORY VALUES: MODIFIED
+    </div>
 
-    <section>
-        <h2>Things I've Worked On</h2>
+    <div class="container">
         
-        <div class="project-card">
-            <h3>C++ & Game Development</h3>
-            <p>Exploring game engine mechanics and building prototypes using C++ and Raylib.</p>
+        <div class="visual-header">
+            <div class="visual-text">
+                Unlink the world.<br>
+                Unlock the rest.
+            </div>
         </div>
 
-        <div class="project-card">
-            <h3>Essays & Writings</h3>
-            <p>Thoughts on consumerism, human consciousness, and my personal study notes.</p>
+        <div class="ascii-border">
+            &gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;
         </div>
-        
-    </section>
 
-    <section>
-        <h2>Get in Touch</h2>
-        <p>You can reach me at: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-    </section>
+        <div class="content-box">
+            <h2>Welcome to the nendondo project</h2>
+            <p>This space is dedicated to logging active broadcasts, research, and system architecture. Interaction is strictly logged.</p>
+            <p>Current directives focus on pulling apart x64 binaries, analyzing memory registers, and compiling raw C++ game loops.</p>
+        </div>
+
+        <div class="ascii-border">
+            &gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;
+        </div>
+
+        <div class="content-box">
+            <h2>Active Threads //</h2>
+            <ul>
+                <li><span class="highlight">0x01</span> - Disassembling CrackMes and tracing logic in x64dbg.</li>
+                <li><span class="highlight">0x02</span> - Drafting essays on consumerism, artificial constructs, and human consciousness.</li>
+                <li><span class="highlight">0x03</span> - Modeling mechanical components and plotting multivariable systems.</li>
+            </ul>
+        </div>
+
+    </div>
+
 </body>
 </html>
