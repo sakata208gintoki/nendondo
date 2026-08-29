@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>nendondo // DIRECTIVE</title>
-    <!-- Imports a retro pixel font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -28,10 +27,7 @@
             content: " ";
             display: block;
             position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
+            top: 0; left: 0; bottom: 0; right: 0;
             background: linear-gradient(
                 to bottom,
                 rgba(18, 16, 16, 0) 50%,
@@ -42,19 +38,30 @@
             pointer-events: none;
         }
 
-        /* Subtle screen glow */
         .crt-glow {
             text-shadow: 0 0 3px rgba(255, 255, 255, 0.4);
         }
 
-        .top-banner {
+        /* 1. Scrolling Ticker Animation */
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
             background-color: #111;
-            color: var(--alert-color);
-            text-align: center;
-            padding: 5px;
             border-bottom: 1px solid var(--alert-color);
+            padding: 5px 0;
+        }
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 100%;
+            animation: ticker-anim 15s linear infinite;
+            color: var(--alert-color);
             font-size: 24px;
             letter-spacing: 2px;
+        }
+        @keyframes ticker-anim {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
         }
 
         .container {
@@ -66,7 +73,6 @@
         .visual-header {
             position: relative;
             height: 350px;
-            /* You can replace this URL with your own glitch/anime art */
             background-image: url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1000&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -78,14 +84,56 @@
             filter: contrast(150%) grayscale(80%);
         }
 
-        .visual-text {
+        /* 2. Glitch Text Effect */
+        .glitch-wrapper {
             background: rgba(0, 0, 0, 0.7);
             padding: 20px;
+        }
+        .glitch-text {
+            position: relative;
             font-size: 48px;
             text-align: center;
             letter-spacing: 4px;
             color: white;
             text-transform: uppercase;
+            margin: 0;
+        }
+        /* Pseudo-elements to create the red/cyan split layers */
+        .glitch-text::before, .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0,0,0,0);
+        }
+        .glitch-text::before {
+            left: 3px;
+            text-shadow: -2px 0 red;
+            clip-path: inset(10% 0 60% 0);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        .glitch-text::after {
+            left: -3px;
+            text-shadow: -2px 0 cyan;
+            clip-path: inset(80% 0 5% 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim-1 {
+            0% { clip-path: inset(20% 0 80% 0); }
+            20% { clip-path: inset(60% 0 10% 0); }
+            40% { clip-path: inset(40% 0 50% 0); }
+            60% { clip-path: inset(80% 0 5% 0); }
+            80% { clip-path: inset(10% 0 70% 0); }
+            100% { clip-path: inset(30% 0 50% 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip-path: inset(10% 0 60% 0); }
+            20% { clip-path: inset(30% 0 20% 0); }
+            40% { clip-path: inset(70% 0 10% 0); }
+            60% { clip-path: inset(20% 0 50% 0); }
+            80% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(5% 0 80% 0); }
         }
 
         .ascii-border {
@@ -96,44 +144,59 @@
             user-select: none;
         }
 
-        h1, h2 {
-            font-weight: normal;
-            margin-top: 0;
-        }
-
         .content-box {
             margin-bottom: 30px;
         }
 
+        /* 3. Typing Greeting Animation */
+        .typing-container {
+            display: inline-block;
+        }
+        .typing-text {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 15px solid white; /* This acts as the block cursor */
+            margin: 0;
+            animation: 
+                typing 2.5s steps(35, end),
+                blink-caret .5s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: white; }
+        }
+
+        h2 {
+            font-weight: normal;
+            margin-top: 0;
+        }
         .highlight {
             color: #fff;
             background: #222;
             padding: 2px 5px;
         }
-
-        a {
-            color: #88ccff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            background-color: #88ccff;
-            color: #000;
-        }
     </style>
 </head>
 <body class="crt-glow">
 
-    <div class="top-banner">
-        SYSTEM LOG // STATUS: CONNECTED // MEMORY VALUES: MODIFIED
+    <!-- Scrolling Ticker -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            SYSTEM LOG // STATUS: CONNECTED // MEMORY VALUES: MODIFIED // UNLINK THE WORLD //
+        </div>
     </div>
 
     <div class="container">
         
         <div class="visual-header">
-            <div class="visual-text">
-                Unlink the world.<br>
-                Unlock the rest.
+            <div class="glitch-wrapper">
+                <!-- The data-text attribute is required for the CSS glitch to duplicate the words -->
+                <h1 class="glitch-text" data-text="UNLINK THE WORLD.">UNLINK THE WORLD.</h1>
+                <h1 class="glitch-text" data-text="UNLOCK THE REST.">UNLOCK THE REST.</h1>
             </div>
         </div>
 
@@ -142,7 +205,10 @@
         </div>
 
         <div class="content-box">
-            <h2>Welcome to the nendondo project</h2>
+            <!-- Animated Typing Greeting -->
+            <div class="typing-container">
+                <h2 class="typing-text">> Welcome to the nendondo project_</h2>
+            </div>
             <p>This space is dedicated to logging active broadcasts, research, and system architecture. Interaction is strictly logged.</p>
             <p>Current directives focus on pulling apart x64 binaries, analyzing memory registers, and compiling raw C++ game loops.</p>
         </div>
