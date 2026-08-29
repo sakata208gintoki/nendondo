@@ -178,7 +178,9 @@
             border: 1px solid #333;
             background: rgba(10, 10, 10, 0.8);
             padding: 15px;
-            width: calc(50% - 35px);
+            /* Added box-sizing and adjusted the width calculation */
+            box-sizing: border-box; 
+            width: calc(50% - 10px); 
             position: relative;
             cursor: crosshair;
             transition: all 0.3s ease;
